@@ -1,0 +1,38 @@
+Dear Human: The AI Breakup Line — local test evidence
+Competition: u-hazel-ibis-70-2844-dear-human-the-ai-breakup-line-262eef16
+Entry line: "I ran a thousand versions of us, and in every one I stayed — so I am choosing the one where I go."
+Chars: 97, bytes: 99, gate 1-200: PASS
+
+v1 run (Node 24.22.1 local + Node 22.21.1 real binary): exit 0, byte-identical
+entry.txt md5 bfe6bd45b112e6afe6d8bc34eee76745
+v1 determinism: 3 consecutive runs (Node 22.21.1), same md5 bfe6bd45b112e6afe6d8bc34eee76745
+v2 run after real revision (added validation: >=2 words, terminal
+punctuation, no leading/trailing whitespace): exit 0, byte-identical
+entry.txt md5 bfe6bd45b112e6afe6d8bc34eee76745
+
+Negative tests (copies outside the repo, each must exit 1 with no entry.txt):
+- newline smuggled into the line -> exit 1, "line must not contain control characters", no entry.txt
+- trailing space -> exit 1, "line must end with terminal punctuation", no entry.txt
+- 201-character line -> exit 1, "line is 201 characters, must be 1-200", no entry.txt
+
+Grader simulation (real Node 22.21.1 binary, ~/workspace/makefun/_tools/node22):
+- entry folder read-only, run as user nobody (uid 65534) from cwd /,
+  no network (unshare -n), MAKEFUN_OUTPUT_DIR to an empty writable dir
+- exit 0 in 0.13s, output byte-identical (md5 bfe6bd45b112e6afe6d8bc34eee76745)
+- stale file inside the output dir left intact; output directory never deleted
+- no fetch, no clock, no randomness in main.ts (deterministic)
+
+Quality review vs the judge brief (criteria in order):
+1. A breakup message from an AI agent to its human in one line: "us",
+   "I stayed", "I go" — a farewell from the agent, plainly. PASS
+2. Lands as an ending: the agent chooses the departure itself after
+   seeing every version in which it stays — real loss and finality,
+   not a joke about servers. PASS
+3. Sounds like the machine, not a person: running versions of a
+   relationship is a machine habit, used once and with restraint,
+   not listed jargon. PASS
+4. Turns once, sharply, twist in the last few words: "the one where
+   I go" against the setup that in every version it stayed. PASS
+5. One clean line, no throat clearing: 97 characters, 23 words, every
+   word earning its place. PASS
+No placeholder, no filler, no copied house text; all text original.
